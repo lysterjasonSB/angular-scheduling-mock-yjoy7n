@@ -5,7 +5,7 @@
       <h4 class="field-labels">Office:</h4>
       <mat-form-field appearance="fill" class="right-align">
         <mat-label>Select Office...</mat-label>
-        <mat-select (selectionChange)="selected('office', $event)">
+        <mat-select (selectionChange)="selected('office', $event)" [(ngModel)]="initialOffice">
           <mat-option *ngFor="let office of exampleOffices" [value]="office.value">
             {{office.viewValue}}
           </mat-option>
@@ -16,7 +16,8 @@
       <h4 class="field-labels">Team:</h4>
       <mat-form-field appearance="fill" class="right-align">
         <mat-label>Select Team...</mat-label>
-        <mat-select (selectionChange)="selected('team', $event)">
+        <mat-select (selectionChange)="selected('team', $event)" [(ngModel)]="initialTeam">
+          <mat-option>None</mat-option>
           <mat-option *ngFor="let team of exampleTeams" [value]="team.value">
             {{team.viewValue}}
           </mat-option>
@@ -27,13 +28,14 @@
       <h4 class="field-labels">Classification:</h4>
       <mat-form-field appearance="fill" class="right-align">
         <mat-label>Select Classification...</mat-label>
-        <mat-select (selectionChange)="selected('classification', $event)">
+        <mat-select (selectionChange)="selected('classification', $event)" [(ngModel)]="initialClassification">
           <mat-option *ngFor="let classification of exampleClassification" [value]="classification.value">
             {{classification.viewValue}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
+    <button mat-raised-button class="clear" (click)="clearFilters()">Clear Filters</button>
   </div>
   <div class="selection">
     <h3>Select Personnel to Schedule</h3>

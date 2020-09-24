@@ -5,7 +5,7 @@
       <h4 class="field-labels">Client Name:</h4>
       <mat-form-field appearance="fill" class="right-align">
         <mat-label>Select Client...</mat-label>
-        <mat-select (selectionChange)="selected('clientName', $event)">
+        <mat-select (selectionChange)="selected('clientName', $event)" [(ngModel)]="initialTeam">
           <mat-option *ngFor="let client of exampleClients" [value]="client.value">
             {{client.viewValue}}
           </mat-option>
@@ -16,13 +16,14 @@
       <h4 class="field-labels">Engagement Type:</h4>
       <mat-form-field appearance="fill" class="right-align">
         <mat-label>Select Name...</mat-label>
-        <mat-select (selectionChange)="selected('engType', $event)">
+        <mat-select (selectionChange)="selected('engType', $event)" [(ngModel)]="initialType">
           <mat-option *ngFor="let type of engagementTypes" [value]="type.value">
             {{type.viewValue}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
+    <button mat-raised-button class="clear" (click)="clearFilters()">Clear Filters</button>
   </div>
   <div class="selection">
     <h3>Select Engagement to Schedule</h3>

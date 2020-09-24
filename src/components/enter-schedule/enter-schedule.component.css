@@ -148,17 +148,21 @@ h4 {
 } */
 
 ::ng-deep .mat-cell:focus-within {
-  background-color: rgba(198, 239, 206, 0.25);
+  background-color: rgba(198, 239, 206, 0.35);
 }
 
 .firstRowWidth {
-  width: 7% !important;
+  width: 10% !important;
 }
 
 .secondRowWidth {
-  width: 17.5% !important;
+  width: 20% !important;
 }
 
 .dayWidth {
   width: 3% !important;
+}
+
+.align-icons {
+  vertical-align: inherit !important;
 }

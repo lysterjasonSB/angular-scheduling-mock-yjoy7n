@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { EngagementDialogComponent } from '../engagement-dialog/engagement-dialog.component';
 import { PersonnelDialogComponent } from '../personnel-dialog/personnel-dialog.component';
+import { eventTargetPatch } from 'zone.js/lib/browser/event-target';
 
 @Component({
   selector: 'app-enter-schedule',
@@ -37,8 +38,6 @@ export class EnterScheduleComponent implements OnInit {
     "18/10",
     "19/10",
     "20/10",
-    "21/10",
-    "22/10"
   ];
   public weekendsArray = ["27/09", "3/10", "4/10", "10/10", "11/10",  "17/10", "18/10"]
   public endDateArr = this.days;
@@ -87,6 +86,19 @@ export class EnterScheduleComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.currentEngagements = result;
       this.currentFilteredEngagements = this.currentEngagements.filter(_ => _.engType);
+    });
+  }
+
+  public collapseEngagement(engagement): void {
+    engagement.expanded = engagement.expanded ? false : true;
+    let dataClone = Array.from(this.currentEngagements);
+    let beginningIndex = dataClone.findIndex(_ => _.name === engagement.name);
+    dataClone.splice(0, beginningIndex + 1);
+    let endValue = dataClone.find(_ => _.clientName);
+    let endIndex = dataClone.findIndex(_ => _.name === endValue.name);
+    let collapsableElements = dataClone.splice(0, endIndex)
+    collapsableElements.forEach(_ => {
+      _.hidden = !engagement.expanded;
     });
   }
 

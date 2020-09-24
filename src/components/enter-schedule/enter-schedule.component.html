@@ -11,7 +11,11 @@
 
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef class="firstRowWidth"> Client </th>
-          <td mat-cell *matCellDef="let engagement"> {{ engagement.clientName }} </td>
+          <td mat-cell *matCellDef="let engagement"> 
+          <mat-icon class="align-icons" *ngIf="engagement.clientName"
+          (click)="collapseEngagement(engagement)">{{ engagement.expanded ? 'expand_more' : 'expand_less' }}</mat-icon>
+          {{ engagement.clientName }} 
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="name">
@@ -36,7 +40,7 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumnsEng"></tr>
-        <tr mat-row cdkDrag *matRowDef="let row; columns: displayedColumnsEng;" [cdkDragDisabled]="row.clientName" (click)="assignQuickEngagement(row)"></tr>
+        <tr mat-row cdkDrag *matRowDef="let row; columns: displayedColumnsEng;" [cdkDragDisabled]="row.clientName" (click)="assignQuickEngagement(row)" [hidden]="!row.clientName && row.hidden"></tr>
 
       </table>
     </div>
@@ -86,23 +90,23 @@
     <div class="sidenav-contents">
       <h2>Quick Entry</h2>
         <div class="dropdowns">
-          <h4 class="field-labels">Personnel Name:</h4>
-          <mat-form-field appearance="fill" class="selections">
-            <mat-label>Select Personnel</mat-label>
-            <mat-select [(ngModel)]="quickPersonnel">
-              <mat-option *ngFor="let person of currentPersonnel" [value]="person.name">
-                {{person.name}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="dropdowns">
           <h4 class="field-labels">Engagement:</h4>
           <mat-form-field appearance="fill" class="selections">
             <mat-label>Select Engagement...</mat-label>
             <mat-select [(ngModel)]="quickEngagement">
               <mat-option *ngFor="let engagement of currentEngagements" [value]="engagement.name">
                 {{engagement.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="dropdowns">
+          <h4 class="field-labels">Personnel Name:</h4>
+          <mat-form-field appearance="fill" class="selections">
+            <mat-label>Select Personnel</mat-label>
+            <mat-select [(ngModel)]="quickPersonnel">
+              <mat-option *ngFor="let person of currentPersonnel" [value]="person.name">
+                {{person.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>

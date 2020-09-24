@@ -83,15 +83,26 @@ export class PersonnelDialogComponent implements OnInit {
       engagements: {}
     }
   ]
+  
+  public allPersonnel;
+  public initialOffice = null;
+  public initialTeam = null;
+  public initialClassification = null;
+
   constructor() {}
 
   ngOnInit() {
-
+    this.allPersonnel = Array.from(this.currentPersonnel)
   }
 
-  public selected(inputType: string, event) {
-    console.log(event);
-    console.log(event.value);
+  public clearFilters(): void {
+    this.currentPersonnel = this.allPersonnel;
+    this.initialOffice = null;
+    this.initialClassification = null;
+    this.initialTeam = null;
+  }
+
+  public selected(inputType: string, event): void {
     this.currentPersonnel = this.currentPersonnel.filter(_ => _[inputType] === event.value);
   }
 

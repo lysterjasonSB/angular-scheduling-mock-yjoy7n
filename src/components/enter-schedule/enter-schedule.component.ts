@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, copyArrayItem } from '@angular/cdk/drag-drop';
 import { MatDialog } from '@angular/material/dialog';
 
 import { EngagementDialogComponent } from '../engagement-dialog/engagement-dialog.component';
+import { FutureHireDialogComponent } from '../future-hire-dialog/future-hire-dialog.component';
 import { PersonnelDialogComponent } from '../personnel-dialog/personnel-dialog.component';
-import { eventTargetPatch } from 'zone.js/lib/browser/event-target';
 
 @Component({
   selector: 'app-enter-schedule',
@@ -58,7 +58,7 @@ export class EnterScheduleComponent implements OnInit {
 
   @ViewChild('dtable', {static: false}) dtable: any;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
   }
@@ -89,6 +89,16 @@ export class EnterScheduleComponent implements OnInit {
     });
   }
 
+  public openFutureHireModal(): void {
+    console.log(this.currentPersonnel);
+    let dialogRef = this.dialog.open(FutureHireDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      let replacementArray = Array.from(this.currentPersonnel);
+      replacementArray.push(result);
+      this.currentPersonnel = replacementArray;
+    });
+  }
+
   public collapseEngagement(engagement): void {
     engagement.expanded = engagement.expanded ? false : true;
     let dataClone = Array.from(this.currentEngagements);
@@ -105,6 +115,14 @@ export class EnterScheduleComponent implements OnInit {
   public getHours(personnel, day) {
     if (personnel[day] === 'personal') { return 0 }
     else { return personnel[day] ? 8 - personnel[day] : 8 }
+  }
+
+  public getSecondRowText(personnel) {
+    if (this.checkedClass) {
+      return `${personnel.name} - ${personnel.classification}`;
+    } else {
+      return personnel.name;
+    }
   }
 
   public parseEndDate(event): void {

@@ -95,7 +95,7 @@ td.mat-cell, th.mat-header-cell {
 }
 
 .makeBorder {
-  border: 1px solid black;
+  border: 0.25px solid rgba(0,0,0,0.12);
 }
 
 th.mat-header-cell {
@@ -143,12 +143,8 @@ h4 {
   float: right;
 }
 
-/* .mat-row:hover {
-  background-color: rgba(15, 60, 79, 0.075);
-} */
-
 ::ng-deep .mat-cell:focus-within {
-  background-color: rgba(198, 239, 206, 0.35);
+  background-color: rgba(198, 239, 206, 0.35) !important;
 }
 
 .firstRowWidth {

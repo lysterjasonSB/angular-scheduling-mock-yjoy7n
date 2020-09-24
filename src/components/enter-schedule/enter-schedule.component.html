@@ -49,7 +49,7 @@
   <div class="personnel-availability borders">
     <h2>Personnel Availability</h2>
     <button mat-raised-button (click)="openPersonnelModal($event)">Add Personnel</button>
-    <button mat-raised-button>Add Future Hire</button>
+    <button mat-raised-button (click)="openFutureHireModal($event)">Add Future Hire</button>
     <mat-checkbox class="classification" [(ngModel)]="checkedClass">Show Classification</mat-checkbox>
       <div class="table-div">
         <table mat-table [dataSource]="currentPersonnel" class="mat-elevation-z8"
@@ -64,7 +64,7 @@
 
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef class="secondRowWidth"> Name </th>
-            <td mat-cell *matCellDef="let personnel"> {{personnel.name}} - {{ personnel.classification }} </td>
+            <td mat-cell *matCellDef="let personnel"> {{ getSecondRowText(personnel) }} </td>
           </ng-container>
 
           <ng-container matColumnDef="classification">

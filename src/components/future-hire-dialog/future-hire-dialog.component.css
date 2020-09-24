@@ -1,0 +1,30 @@
+.dropdowns {
+  position: relative;
+  display: flex;
+  margin-bottom: 15px
+}
+
+.nhcontainer {
+  width: 20vw;
+}
+
+h4 {
+  margin-right: 3vw;
+}
+
+.dropdowns {
+  position: relative;
+  display: flex;
+  margin-bottom: 15px
+}
+
+.right-align {
+  position: absolute;
+  right: 0;
+}
+
+button {
+  float: right;
+  margin-left: 15px;
+  margin-top: 20px;
+}

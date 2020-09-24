@@ -96,7 +96,7 @@ export class EngagementDialogComponent implements OnInit {
   public initialTeam = null;
 
   ngOnInit(): void {
-    this.allEngagements = Array.from(this.allEngagements);
+    this.allEngagements = Array.from(this.currentEngagements);
   }
 
   public clearFilters(): void {

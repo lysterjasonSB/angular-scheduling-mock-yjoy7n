@@ -1,0 +1,46 @@
+<div class="nhcontainer">
+  <h3>Add Future Hire</h3>
+  <div class="dropdowns">
+    <h4 class="field-labels">Add Name:</h4>
+    <mat-form-field appearance="fill" class="right-align">
+      <mat-label>Enter Name</mat-label>
+      <input matInput placeholder="Enter Name..." [(ngModel)]="newHire.name">
+    </mat-form-field>
+  </div>
+  <div class="dropdowns">
+    <h4 class="field-labels">Add Office:</h4>
+    <mat-form-field appearance="fill" class="right-align">
+      <mat-label>Select Office...</mat-label>
+      <mat-select (selectionChange)="selected('office', $event)" [(ngModel)]="initialOffice">
+        <mat-option *ngFor="let office of exampleOffices" [value]="office.value">
+          {{office.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="dropdowns">
+    <h4 class="field-labels">Add Team:</h4>
+    <mat-form-field appearance="fill" class="right-align">
+      <mat-label>Select Team...</mat-label>
+      <mat-select (selectionChange)="selected('team', $event)" [(ngModel)]="initialTeam">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let team of exampleTeams" [value]="team.value">
+          {{team.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="dropdowns">
+    <h4 class="field-labels">Add Classification:</h4>
+    <mat-form-field appearance="fill" class="right-align">
+      <mat-label>Select Classification...</mat-label>
+      <mat-select (selectionChange)="selected('classification', $event)" [(ngModel)]="initialClassification">
+        <mat-option *ngFor="let classification of exampleClassification" [value]="classification.value">
+          {{classification.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button [mat-dialog-close]="newHire">Add Personnel</button>
+  <button mat-raised-button mat-dialog-close>Cancel</button>
+</div>

@@ -18,6 +18,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { EnterScheduleComponent } from '../components/enter-schedule/enter-schedule.component';
 import { PersonnelDialogComponent } from '../components/personnel-dialog/personnel-dialog.component';
+import { FutureHireDialogComponent } from '../components/future-hire-dialog/future-hire-dialog.component';
 import { EngagementDialogComponent } from '../components/engagement-dialog/engagement-dialog.component';
 
 @NgModule({
@@ -40,11 +41,13 @@ import { EngagementDialogComponent } from '../components/engagement-dialog/engag
                   HeaderComponent,
                   EnterScheduleComponent,
                   EngagementDialogComponent,
-                  PersonnelDialogComponent
+                  PersonnelDialogComponent,
+                  FutureHireDialogComponent
                 ],
   entryComponents: [
                   EngagementDialogComponent,
-                  PersonnelDialogComponent
+                  PersonnelDialogComponent,
+                  FutureHireDialogComponent
                  ],
   bootstrap:    [ AppComponent ]
 })

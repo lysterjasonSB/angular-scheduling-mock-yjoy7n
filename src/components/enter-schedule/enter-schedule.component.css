@@ -1,0 +1,164 @@
+.client-schedule {
+  height: 42vh;
+}
+
+.example-container {
+  margin: 1% !important;
+}
+
+.personnel-availability {
+  height: 40vh;
+  bottom: 0 !important;
+  margin-top: 0.5%;
+}
+
+.borders {
+  border: 2px solid;
+  border-color: #0F3C4F;
+}
+
+h2 {
+  display: inline-block;
+  margin-left: 1.5%;
+  margin-right: 5%;
+  color: #005244;
+  font-weight: bolder;
+  font-size: 25px;
+}
+
+button {
+  margin-right: 15px;
+}
+
+.days-toggle {
+  margin-left: 2%
+}
+
+.classification {
+  margin-left: 15px;
+}
+
+.table-div { 
+  margin: 20px;
+  margin-top: 5px !important;
+  overflow: scroll;
+  height: 70%;
+}
+
+table {
+  width: 100%;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drop-list-dragging .mat-row:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+td.mat-cell, th.mat-header-cell {
+  text-align: center;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+.makeSmall {
+  width: 30px !important;
+}
+
+.highlight {
+  background: rgba(15, 60, 79, 0.05);
+}
+
+.cdk-drag-disabled {
+  background: rgba(15, 60, 79, 0.05);
+  cursor: default;
+}
+
+.makeExcelBorder {
+  border: 0.25px solid rgba(0,0,0,0.12);
+}
+
+.makeBorder {
+  border: 1px solid black;
+}
+
+th.mat-header-cell {
+  font-weight: bold;
+  color: black;
+}
+
+.pop-out {
+  float: right;
+  color: #0F3C4F;
+  font-size: 40px;
+  margin-right: 25px;
+  margin-top: 15px;
+}
+
+.pop-out:hover{
+  color: #EF5A27;
+}
+
+.sidenav {
+  width: 24vw;
+}
+
+.sidenav-contents {
+  margin-left: 20px;
+}
+
+.selections {
+  position: absolute;
+  right: 0;
+}
+
+.dropdowns {
+  position: relative;
+  display: flex;
+  margin-bottom: 15px
+}
+
+h4 {
+  margin-right: 3vw
+}
+
+.quickEntry {
+  margin-top: 20px;
+  float: right;
+}
+
+/* .mat-row:hover {
+  background-color: rgba(15, 60, 79, 0.075);
+} */
+
+::ng-deep .mat-cell:focus-within {
+  background-color: rgba(198, 239, 206, 0.25);
+}
+
+.firstRowWidth {
+  width: 5% !important;
+}
+
+.secondRowWidth {
+  width: 15% !important;
+}
+
+.dayWidth {
+  width: 3% !important;
+}

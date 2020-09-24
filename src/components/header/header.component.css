@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+}
+
+.header {
+  width: 100%;
+  background-color: #0F3C4F;
+  height: 100px;
+  display: flex;
+}
+
+#logo {
+  float: left;
+  margin: auto;
+  margin-left: 0;
+  padding-left: 50px;
+}
+
+#action {
+  float: right;
+  margin: auto;
+  margin-right: 0;
+  padding-right: 50px;
+}

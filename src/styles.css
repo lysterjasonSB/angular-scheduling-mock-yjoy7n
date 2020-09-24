@@ -1,0 +1,14 @@
+/* Add application styles & imports to this file! */
+body {
+  margin: 0 !important;
+  overflow: none !important;
+}
+
+.mat-raised-button {
+  background-color: #0F3C4F;
+  color: white;
+}
+
+.mat-raised-button:hover {
+  background-color: #EF5A27;
+}

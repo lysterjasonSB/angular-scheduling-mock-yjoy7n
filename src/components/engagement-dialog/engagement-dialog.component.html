@@ -1,0 +1,60 @@
+<div class="personnel-search border">
+  <div class="search">
+    <h3>Engagement Search</h3>
+    <div class="dropdowns">
+      <h4 class="field-labels">Client Name:</h4>
+      <mat-form-field appearance="fill" class="right-align">
+        <mat-label>Select Client...</mat-label>
+        <mat-select (selectionChange)="selected('clientName', $event)">
+          <mat-option *ngFor="let client of exampleClients" [value]="client.value">
+            {{client.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="dropdowns">
+      <h4 class="field-labels">Engagement Type:</h4>
+      <mat-form-field appearance="fill" class="right-align">
+        <mat-label>Select Name...</mat-label>
+        <mat-select (selectionChange)="selected('engType', $event)">
+          <mat-option *ngFor="let type of engagementTypes" [value]="type.value">
+            {{type.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="selection">
+    <h3>Select Engagement to Schedule</h3>
+    <div *ngIf="currentEngagements.length < 1" class="no-criteria">
+      There are no Engagements that fit that criteria
+    </div>
+    <div *ngIf="currentEngagements.length > 0">
+      <div class="table-div">
+        <table mat-table [dataSource]="currentEngagements" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="clientName">
+            <th mat-header-cell *matHeaderCellDef>Client Name</th>
+            <td mat-cell *matCellDef="let engagement"> {{engagement.clientName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let engagement"> {{engagement.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="classification">
+            <th mat-header-cell *matHeaderCellDef> Engagement Type </th>
+            <td mat-cell *matCellDef="let engagement"> {{engagement.engType}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+      </div>
+      <button mat-raised-button [mat-dialog-close]="currentEngagements">Add Engagements</button>
+      <button mat-raised-button mat-dialog-close>Cancel</button>
+    </div>
+  </div>
+</div>

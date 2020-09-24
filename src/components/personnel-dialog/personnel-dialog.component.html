@@ -1,0 +1,76 @@
+<div class="personnel-search border">
+  <div class="search">
+    <h3>Client Search</h3>
+    <div class="dropdowns">
+      <h4 class="field-labels">Office:</h4>
+      <mat-form-field appearance="fill" class="right-align">
+        <mat-label>Select Office...</mat-label>
+        <mat-select (selectionChange)="selected('office', $event)">
+          <mat-option *ngFor="let office of exampleOffices" [value]="office.value">
+            {{office.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="dropdowns">
+      <h4 class="field-labels">Team:</h4>
+      <mat-form-field appearance="fill" class="right-align">
+        <mat-label>Select Team...</mat-label>
+        <mat-select (selectionChange)="selected('team', $event)">
+          <mat-option *ngFor="let team of exampleTeams" [value]="team.value">
+            {{team.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="dropdowns">
+      <h4 class="field-labels">Classification:</h4>
+      <mat-form-field appearance="fill" class="right-align">
+        <mat-label>Select Classification...</mat-label>
+        <mat-select (selectionChange)="selected('classification', $event)">
+          <mat-option *ngFor="let classification of exampleClassification" [value]="classification.value">
+            {{classification.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="selection">
+    <h3>Select Personnel to Schedule</h3>
+    <div *ngIf="currentPersonnel.length < 1" class="no-criteria">
+      There are no personnel that fit that criteria
+    </div>
+    <div *ngIf="currentPersonnel.length > 0">
+      <div class="table-div">
+        <table mat-table [dataSource]="currentPersonnel" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let personnel"> {{personnel.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let personnel"> {{personnel.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="classification">
+            <th mat-header-cell *matHeaderCellDef> Classification </th>
+            <td mat-cell *matCellDef="let personnel"> {{personnel.classification}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="selected">
+            <th mat-header-cell *matHeaderCellDef> Select </th>
+            <td mat-cell *matCellDef="let personnel"> {{personnel.selected}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+      </div>
+      <button mat-raised-button [mat-dialog-close]="currentPersonnel">Add Personnel</button>
+      <button mat-raised-button mat-dialog-close>Cancel</button>
+    </div>
+  </div>
+</div>

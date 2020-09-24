@@ -1,0 +1,260 @@
+@import '~@angular/material/theming';
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+$mnp-green: (
+    50 : #e0eae9,
+    100 : #b3cbc7,
+    200 : #80a9a2,
+    300 : #4d867c,
+    400 : #266c60,
+    500 : #005244,
+    600 : #004b3e,
+    700 : #004135,
+    800 : #00382d,
+    900 : #00281f,
+    A100 : #63ffcf,
+    A200 : #30ffbf,
+    A400 : #00fcae,
+    A700 : #00e29d,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$mnp-teal: (
+    50 : #e2f0f1,
+    100 : #b7d9dc,
+    200 : #88bfc5,
+    300 : #58a5ad,
+    400 : #34929c,
+    500 : #107f8a,
+    600 : #0e7782,
+    700 : #0c6c77,
+    800 : #09626d,
+    900 : #054f5a,
+    A100 : #8ceeff,
+    A200 : #59e6ff,
+    A400 : #26deff,
+    A700 : #0ddaff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+$mnp-orange: (
+    50 : #fdebe5,
+    100 : #facebe,
+    200 : #f7ad93,
+    300 : #f48c68,
+    400 : #f17347,
+    500 : #ef5a27,
+    600 : #ed5223,
+    700 : #eb481d,
+    800 : #e83f17,
+    900 : #e42e0e,
+    A100 : #ffffff,
+    A200 : #ffe0dc,
+    A400 : #ffb3a9,
+    A700 : #ff9d90,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$mnp-blue: (
+    50 : #e2e8ea,
+    100 : #b7c5ca,
+    200 : #879ea7,
+    300 : #577784,
+    400 : #335969,
+    500 : #0f3c4f,
+    600 : #0d3648,
+    700 : #0b2e3f,
+    800 : #082736,
+    900 : #041a26,
+    A100 : #61bdff,
+    A200 : #2ea8ff,
+    A400 : #0092fa,
+    A700 : #0083e0,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$mnp-warnyellow: (
+    50 : #fdf5e5,
+    100 : #fae6be,
+    200 : #f7d693,
+    300 : #f4c568,
+    400 : #f1b847,
+    500 : #efac27,
+    600 : #eda523,
+    700 : #eb9b1d,
+    800 : #e89217,
+    900 : #e4820e,
+    A100 : #ffffff,
+    A200 : #ffeedc,
+    A400 : #ffd5a9,
+    A700 : #ffc890,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$mnp-grey: (
+    50 : #e6e6e6,
+    100 : #c2c2c2,
+    200 : #999999,
+    300 : #707070,
+    400 : #515151,
+    500 : #323232,
+    600 : #2d2d2d,
+    700 : #262626,
+    800 : #1f1f1f,
+    900 : #131313,
+    A100 : #ef6c6c,
+    A200 : #ea3e3e,
+    A400 : #f50000,
+    A700 : #db0000,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+// PRIMARY THEME
+$primary-theme-primary: mat-palette($mnp-blue);
+$primary-theme-accent: mat-palette($mnp-teal);
+$primary-theme-warn: mat-palette($mnp-orange, 700, 600, 800); // mat-palette($mnp-grey, A400, A200, A700);
+$mnp-custom-theme-primary: mat-light-theme($primary-theme-primary, $primary-theme-accent, $primary-theme-warn);
+
+// SECONDARY THEME
+$secondary-theme-primary: mat-palette($mnp-green);
+$secondary-theme-accent: $primary-theme-accent;
+$secondary-theme-warn: $primary-theme-warn;
+$mnp-custom-theme-secondary: mat-light-theme($secondary-theme-primary, $secondary-theme-accent, $secondary-theme-warn);
+
+// Custom
+$light-grey: mat-color($mnp-grey, 50);
+$med-grey: mat-color($mnp-grey, 200);
+$dark-grey: mat-color($mnp-grey, 500);
+$text-color: $dark-grey;
+$green: mat-color($mnp-green, 500);
+$teal: mat-color($mnp-teal, 500);
+$blue: mat-color($mnp-blue, 500);
+$orange: mat-color($mnp-orange, 600);
+$yellow: mat-color($mnp-warnyellow, 600);
+$success: mat-color($mnp-green, A700);
+$error: mat-color($mnp-orange, 600);
+$font-family-primary: "'Open Sans', 'Segoe UI', sans serif";
+
+// Typography
+$mnp-custom-typography: mat-typography-config(
+  $font-family: $font-family-primary,
+  $subheading-1: mat-typography-level(16px, 28px, 600)
+);
+
+// Foreground
+$mnp-custom-theme-foreground: (
+	base: $text-color,
+	divider: $dark-dividers,
+	dividers: $dark-dividers,
+	disabled: $dark-disabled-text,
+	disabled-button: rgba(black, 0.26),
+	disabled-text: $dark-disabled-text,
+	elevation: $text-color,
+	hint-text: $dark-disabled-text,
+	secondary-text: $dark-secondary-text,
+	icon: $text-color,
+	icons: $text-color,
+	text: $text-color,
+	slider-min: rgba(black, 0.87),
+	slider-off: rgba(black, 0.26),
+	slider-off-active: rgba(black, 0.38)
+);
+
+// Include typography for global usage
+@include mat-core($mnp-custom-typography);
+@include angular-material-typography($mnp-custom-typography);
+@include angular-material-theme(map-merge($mnp-custom-theme-primary, (foreground: $mnp-custom-theme-foreground)));
+@include mat-progress-spinner-theme($mnp-custom-theme-secondary);
+@include mat-progress-bar-theme($mnp-custom-theme-secondary);

@@ -36,7 +36,9 @@ export class EnterScheduleComponent implements OnInit {
     "17/10",
     "18/10",
     "19/10",
-    "20/10"
+    "20/10",
+    "21/10",
+    "22/10"
   ];
   public weekendsArray = ["27/09", "3/10", "4/10", "10/10", "11/10",  "17/10", "18/10"]
   public endDateArr = this.days;

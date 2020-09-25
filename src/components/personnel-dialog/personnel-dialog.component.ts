@@ -40,7 +40,9 @@ export class PersonnelDialogComponent implements OnInit {
       selected: false,
       office: 'Calgary',
       team: 'Example Team 1',
-      engagements: {}
+      engagements: {},
+      "8/10": 'personal',
+      "9/10": 'personal'
     },
     {
       id: 123471,
@@ -58,7 +60,8 @@ export class PersonnelDialogComponent implements OnInit {
       selected: false,
       office: 'Okanagan Valley',
       team: 'Example Team 2',
-      engagements: {}
+      engagements: {},
+      "16/10": 'personal'
     },
     {
       id: 123322,

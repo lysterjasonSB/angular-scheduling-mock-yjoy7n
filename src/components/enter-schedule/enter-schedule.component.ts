@@ -82,7 +82,6 @@ export class EnterScheduleComponent implements OnInit {
     let engagement = spliced.find(_ => _.clientName);
 
     // Sum hours for personnel
-    this.currentPersonnel
     let index = this.currentPersonnel.findIndex(_ => _.name === person.name);
     this.currentPersonnel[index].engagements[engagement.name].days[day] = parseInt(event.target.value);
   }
@@ -225,10 +224,6 @@ export class EnterScheduleComponent implements OnInit {
           let dataClone = Array.from(this.currentEngagements);
           let spliced = dataClone.splice(0, event.currentIndex).reverse();
           let newKey = spliced.find(_ => _.clientName).name;
-
-          console.log("Person", person);
-          console.log("PREVIOUS ENGAGEMENT", keyToReplace);
-          console.log("NEW ENGAGEMENT", newKey);
           person.engagements[newKey] = person.engagements[keyToReplace]; 
           delete person.engagements[keyToReplace];
           moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -280,17 +275,47 @@ export class EnterScheduleComponent implements OnInit {
     let start = this.days.indexOf(this.startDate);
     let end = this.days.indexOf(this.endDate) + 1;
     let dateRange = Array.from(this.days).slice(start, end);
+    let engagementIndex = this.currentEngagements.findIndex(_ => _.name = this.quickEngagement)
     let person = this.currentPersonnel[this.currentPersonnel.findIndex(_ => _.name === this.quickPersonnel)];
-    let engagement = this.currentEngagements[this.currentEngagements.findIndex(_ => _.name = this.quickEngagement)];
+    let engagement = this.currentEngagements[engagementIndex];
+    let exists = person.engagements[engagement.name];
+
     dateRange.forEach(day => {
-      person[day].push({ engagement: engagement.name, hours: parseInt(this.quickHours)})
+      if (!person[day]) {
+        if (!person.engagements[engagement.name]) {
+          person.engagements[engagement.name] = { hidden: false, days: {}};
+          person.engagements[engagement.name].days[day] = parseInt(this.quickHours);
+        } else {
+          person.engagements[engagement.name].days[day] = parseInt(this.quickHours);
+        }
+      }
     });
+
+    if (exists === undefined) {
+      let dataClone = Array.from(this.currentEngagements)
+      dataClone.splice(engagementIndex + 1, 0, person);
+      this.currentEngagements = dataClone;
+    }
+
     this.quickEngagement = null;
     this.quickPersonnel = null;
     this.startDate = null;
     this.endDate = null;
     this.quickHours = null;
     this.endDateArr = this.days;
+  }
+
+  public bindToValue(day: any, indexInTable: any, person: any) {
+    let dataClone = Array.from(this.currentEngagements);
+    let spliced = dataClone.splice(0, indexInTable + 1).reverse();
+    let engagement = spliced.find(_ => _.clientName);
+
+    // Sum hours for personnel
+    let index = this.currentPersonnel.findIndex(_ => _.name === person.name);
+    if (!this.currentPersonnel[index].engagements) {
+      this.currentPersonnel[index].engagements[engagement.name] = { hidden: false, days: {}};
+    }
+    return this.currentPersonnel[index].engagements[engagement.name].days[day];
   }
 
 }

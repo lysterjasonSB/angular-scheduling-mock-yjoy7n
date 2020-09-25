@@ -79,7 +79,8 @@ export class PersonnelDialogComponent implements OnInit {
       selected: false,
       office: 'Okanagan Valley',
       team: 'Example Team 2',
-      engagements: {}
+      engagements: {},
+      "2/10": 'personal'
     }
   ]
   

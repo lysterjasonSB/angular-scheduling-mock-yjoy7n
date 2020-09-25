@@ -98,8 +98,10 @@ export class EnterScheduleComponent implements OnInit {
   public openEngagementModal(): void {
     let dialogRef = this.dialog.open(EngagementDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.currentEngagements = result;
-      this.currentFilteredEngagements = this.currentEngagements.filter(_ => _.engType);
+      if (result.length > 0) {
+        this.currentEngagements = result;
+        this.currentFilteredEngagements = this.currentEngagements.filter(_ => _.engType);
+      }
     });
   }
 

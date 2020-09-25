@@ -84,9 +84,8 @@ export class EnterScheduleComponent implements OnInit {
 
     // Sum hours for personnel
     let index = this.currentPersonnel.findIndex(_ => _.name === person.name);
-    // this.currentPersonnel[index][day].engagement.name = event.target.value;
-    // console.log(this.currentPersonnel[index]);
-    this.currentPersonnel[index][day] = this.currentPersonnel[index][day] ? this.currentPersonnel[index][day] + parseInt(event.target.value) : parseInt(event.target.value);
+    this.currentPersonnel[index][day] ? this.currentPersonnel[index][day].push({ engagement: engagement.name, hours: parseInt(event.target.value) }) : this.currentPersonnel[index][day] = [{ engagement: engagement.name, hours: parseInt(event.target.value) }]
+    console.log(this.currentPersonnel[index]);
   }
 
   public openPersonnelModal(): void {
@@ -147,17 +146,29 @@ export class EnterScheduleComponent implements OnInit {
       sumElements = dataClone;
     }
     let sumOfHours = 0;
-    sumElements.forEach(_ => {
-      if (!isNaN(parseInt(_[day]))) {
-        sumOfHours += parseInt(_[day]);
+    sumElements.forEach(personnel => {
+      if (personnel[day].length > 0) {
+        personnel[day].forEach(eng => {
+          if (engagement.name === eng.engagement) {
+            sumOfHours += parseInt(eng.hours);
+          }
+        });
       }
     });
     return sumOfHours;
   }
 
-  public getHours(personnel, day) {
-    if (personnel[day] === 'personal') { return 0 }
-    else { return personnel[day] ? 8 - personnel[day] : 8 }
+  public getHours(personnel, day): number {
+    let sumOfHours = 0;
+     if (personnel[day].length > 0) {
+       personnel[day].forEach(engagement => {
+         sumOfHours += parseInt(engagement.hours);
+       });
+       return (8 - sumOfHours);
+     }
+     else {
+       return 8;
+     }
   }
 
   public getSecondRowText(personnel) {
@@ -207,12 +218,11 @@ export class EnterScheduleComponent implements OnInit {
     if(personnel[day] === 'personal') {
       return '#b4c6e7'
     }
-    if (personnel[day] >= 6.5) {
+    let hours = this.getHours(personnel, day);
+    if (hours <= 2) {
       return '#ffc7ce';
-    } else if ((personnel[day] <= 6.5) && (personnel[day] > 3.5)) {
+    } else if ((hours > 2) && (hours < 5)) {
       return '#ffeb9c';
-    // } else if ((personnel[day] <= 3.5) && (personnel[day] > 1.5)) {
-    //   return 'rgba(154, 205, 50, 0.5)';
     } else {
       return '#c6efce';
     }

@@ -131,6 +131,14 @@ export class EnterScheduleComponent implements OnInit {
     });
   }
 
+  getHiddenValue(index): boolean {
+    let currentPerson = this.currentEngagements[index];
+    let dataClone = Array.from(this.currentEngagements);
+    let spliced = dataClone.splice(0, index).reverse();
+    let engagement = spliced.find(_ => _.clientName);
+    return currentPerson.engagements[engagement.name].hidden
+  } 
+
   public getTotalHoursForEng(engagement, day): number {
     let dataClone = Array.from(this.currentEngagements);
     let beginningIndex = dataClone.findIndex(_ => _.name === engagement.name);
@@ -197,7 +205,37 @@ export class EnterScheduleComponent implements OnInit {
 
   public drop(event) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      if (event.container.id === 'engagements-table') {
+        if (event.previousIndex === event.currentIndex) {
+          moveItemInArray(event.container.data, event.previousIndex, event.currentIndex); 
+        } else if (event.previousIndex < event.currentIndex) {
+          let dataClone = Array.from(this.currentEngagements);
+          let spliced = dataClone.splice(0, event.previousIndex).reverse();
+          let newKey = this.currentEngagements[event.currentIndex].name;
+          let keyToReplace = spliced.find(_ => _.clientName).name;
+          moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+          let person = this.currentEngagements[event.currentIndex];
+          person.engagements[newKey] = person.engagements[keyToReplace]; 
+          delete person.engagements[keyToReplace];
+        } else {
+          let person = this.currentEngagements[event.previousIndex];
+          let dataCloneOne = Array.from(this.currentEngagements);
+          let splicedOne = dataCloneOne.splice(0, event.previousIndex).reverse();
+          let keyToReplace = splicedOne.find(_ => _.clientName).name;
+          let dataClone = Array.from(this.currentEngagements);
+          let spliced = dataClone.splice(0, event.currentIndex).reverse();
+          let newKey = spliced.find(_ => _.clientName).name;
+
+          console.log("Person", person);
+          console.log("PREVIOUS ENGAGEMENT", keyToReplace);
+          console.log("NEW ENGAGEMENT", newKey);
+          person.engagements[newKey] = person.engagements[keyToReplace]; 
+          delete person.engagements[keyToReplace];
+          moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+        }
+      } else {
+        moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      }
     } else {
       copyArrayItem(
         event.previousContainer.data,
@@ -208,7 +246,7 @@ export class EnterScheduleComponent implements OnInit {
       this.currentEngPersonnel = new Set(this.currentEngagements.filter(_ => !_.clientName));
       let currentPerson = this.currentEngagements[event.currentIndex];
       let dataClone = Array.from(this.currentEngagements);
-      let spliced = dataClone.splice(0, event.currentIndex).reverse();
+      let spliced = dataClone.splice(0, event.currentIndex).reverse(); 
       let engagement = spliced.find(_ => _.clientName);
       currentPerson.engagements[engagement.name] = { hidden: false, days: {}};
     }

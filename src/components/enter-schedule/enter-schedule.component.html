@@ -44,8 +44,7 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumnsEng"></tr>
-        <tr mat-row cdkDrag *matRowDef="let row; columns: displayedColumnsEng;" [cdkDragDisabled]="row.clientName" (click)="assignQuickEngagement(row)" [hidden]="(!row.clientName && row.hidden) || (!row.clientName && collapseAll)"></tr>
-
+        <tr mat-row cdkDrag *matRowDef="let row; columns: displayedColumnsEng; let i = index;" [cdkDragDisabled]="row.clientName" (click)="assignQuickEngagement(row)" [hidden]="(!row.clientName && getHiddenValue(i)) || (!row.clientName && collapseAll)"></tr>
       </table>
     </div>
   </div>

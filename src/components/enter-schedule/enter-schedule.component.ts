@@ -48,6 +48,7 @@ export class EnterScheduleComponent implements OnInit {
   public currentFilteredEngagements = [];
   public displayedColumnsEng: string[] = ['id', 'name'].concat(this.days);
   public displayedColumns: string[] = ['id', 'name'].concat(this.days);
+  public collapseAll: boolean = false;
   public showClassification : boolean = false;
 
   public quickPersonnel: string;
@@ -77,7 +78,9 @@ export class EnterScheduleComponent implements OnInit {
   public openPersonnelModal(): void {
     let dialogRef = this.dialog.open(PersonnelDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.currentPersonnel = result;
+      let replacementArray = Array.from(this.currentPersonnel);
+      replacementArray = replacementArray.concat(result);
+      this.currentPersonnel = replacementArray;
     });
   }
 
@@ -90,7 +93,6 @@ export class EnterScheduleComponent implements OnInit {
   }
 
   public openFutureHireModal(): void {
-    console.log(this.currentPersonnel);
     let dialogRef = this.dialog.open(FutureHireDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       let replacementArray = Array.from(this.currentPersonnel);
@@ -144,7 +146,6 @@ export class EnterScheduleComponent implements OnInit {
 
   public drop(event) {
     if (event.previousContainer === event.container) {
-      console.log(event)
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       copyArrayItem(

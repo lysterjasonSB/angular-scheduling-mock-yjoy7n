@@ -10,11 +10,15 @@
         (cdkDropListDropped)="drop($event)">
 
         <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef class="firstRowWidth"><mat-icon class="align-icons" (click)="collapseAll = collapseAll ? false : true"> {{ collapseAll ? 'expand_less' : 'expand_more' }}</mat-icon> Client </th>
-          <td mat-cell *matCellDef="let engagement"> 
-          <mat-icon class="align-icons" *ngIf="engagement.clientName"
-          (click)="collapseEngagement(engagement)">{{ engagement.expanded ? 'expand_more' : 'expand_less' }}</mat-icon>
-          {{ engagement.clientName }} 
+          <th mat-header-cell *matHeaderCellDef class="firstRowWidth">
+            <mat-icon class="align-icons" (click)="collapseAll = collapseAll ? false : true"> {{ collapseAll ? 'expand_less' : 'expand_more' }}</mat-icon> 
+            Client 
+          </th>
+          <td mat-cell *matCellDef="let engagement; let i = index"> 
+            <mat-icon class="align-icons" *ngIf="engagement?.clientName && checkCollapsable(i)"
+              (click)="collapseEngagement(engagement)">{{ engagement.expanded ? 'expand_more' : 'expand_less' }}
+            </mat-icon>
+            {{ engagement.clientName }} 
           </td>
         </ng-container>
 
@@ -34,7 +38,7 @@
               </mat-form-field>
             </div>
             <div *ngIf="engagement.clientName">
-              {{ engagement[day] ? engagement[day] : 0 }}
+              {{ getTotalHoursForEng(engagement, day) }}
             </div>
           </td>
         </ng-container>
@@ -94,7 +98,7 @@
           <mat-form-field appearance="fill" class="selections">
             <mat-label>Select Engagement...</mat-label>
             <mat-select [(ngModel)]="quickEngagement">
-              <mat-option *ngFor="let engagement of currentEngagements" [value]="engagement.name">
+              <mat-option *ngFor="let engagement of currentFilteredEngagements" [value]="engagement.name">
                 {{engagement.name}}
               </mat-option>
             </mat-select>

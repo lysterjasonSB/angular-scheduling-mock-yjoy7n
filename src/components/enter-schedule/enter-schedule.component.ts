@@ -64,15 +64,29 @@ export class EnterScheduleComponent implements OnInit {
   ngOnInit() {
   }
 
+  public checkCollapsable(index): boolean {
+    let nextIndex = parseInt(index) + 1;
+    if (nextIndex >= this.currentEngagements.length) {
+      return false;
+    }
+    if (this.currentEngagements[nextIndex].clientName) {
+      return false;
+    } else {
+      return true
+    }
+  }
   public detectScheduling(event: any, day: any, indexInTable: any, person: any) {
     let dataClone = Array.from(this.currentEngagements);
+
+    // Sum hours for engagement
     let spliced = dataClone.splice(0, indexInTable + 1).reverse();
     let engagement = spliced.find(_ => _.clientName);
-    let engageIndex = this.currentEngagements.findIndex(_ => _.name === engagement.name);
-    this.currentEngagements[engageIndex][day]= this.currentEngagements[engageIndex][day] ? (parseInt(event.target.value) + this.currentEngagements[engageIndex][day]) : parseInt(event.target.value);
+
+    // Sum hours for personnel
     let index = this.currentPersonnel.findIndex(_ => _.name === person.name);
+    // this.currentPersonnel[index][day].engagement.name = event.target.value;
+    // console.log(this.currentPersonnel[index]);
     this.currentPersonnel[index][day] = this.currentPersonnel[index][day] ? this.currentPersonnel[index][day] + parseInt(event.target.value) : parseInt(event.target.value);
-    this.currentPersonnel[index].engagements
   }
 
   public openPersonnelModal(): void {
@@ -103,15 +117,42 @@ export class EnterScheduleComponent implements OnInit {
 
   public collapseEngagement(engagement): void {
     engagement.expanded = engagement.expanded ? false : true;
+    console.log(this.currentEngagements);
     let dataClone = Array.from(this.currentEngagements);
     let beginningIndex = dataClone.findIndex(_ => _.name === engagement.name);
     dataClone.splice(0, beginningIndex + 1);
     let endValue = dataClone.find(_ => _.clientName);
-    let endIndex = dataClone.findIndex(_ => _.name === endValue.name);
-    let collapsableElements = dataClone.splice(0, endIndex)
+    let collapsableElements;
+    if (endValue) {
+      let endIndex = dataClone.findIndex(_ => _.name === endValue.name);
+      collapsableElements = dataClone.splice(0, endIndex);
+    } else {
+      collapsableElements = dataClone;
+    }
     collapsableElements.forEach(_ => {
       _.hidden = !engagement.expanded;
     });
+  }
+
+  public getTotalHoursForEng(engagement, day): number {
+    let dataClone = Array.from(this.currentEngagements);
+    let beginningIndex = dataClone.findIndex(_ => _.name === engagement.name);
+    dataClone.splice(0, beginningIndex + 1);
+    let endValue = dataClone.find(_ => _.clientName);
+    let sumElements;
+    if (endValue) {
+      let endIndex = dataClone.findIndex(_ => _.name === endValue.name);
+      sumElements = dataClone.splice(0, endIndex);
+    } else {
+      sumElements = dataClone;
+    }
+    let sumOfHours = 0;
+    sumElements.forEach(_ => {
+      if (!isNaN(parseInt(_[day]))) {
+        sumOfHours += parseInt(_[day]);
+      }
+    });
+    return sumOfHours;
   }
 
   public getHours(personnel, day) {

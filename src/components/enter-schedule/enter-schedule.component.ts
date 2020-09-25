@@ -106,9 +106,11 @@ export class EnterScheduleComponent implements OnInit {
   public openFutureHireModal(): void {
     let dialogRef = this.dialog.open(FutureHireDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
-      let replacementArray = Array.from(this.currentPersonnel);
-      replacementArray.push(result);
-      this.currentPersonnel = replacementArray;
+      if (result) {
+        let replacementArray = Array.from(this.currentPersonnel);
+        replacementArray.push(result);
+        this.currentPersonnel = replacementArray;
+      }
     });
   }
 
@@ -187,7 +189,8 @@ export class EnterScheduleComponent implements OnInit {
 
   public parseEndDate(event): void {
     let index = this.days.indexOf(event.value) + 1;
-    this.endDateArr = this.endDateArr.splice(index)
+    let dateClone = Array.from(this.days);
+    this.endDateArr = dateClone.splice(index)
   }
 
   public assignQuickClient(row): void {
@@ -275,18 +278,20 @@ export class EnterScheduleComponent implements OnInit {
     let start = this.days.indexOf(this.startDate);
     let end = this.days.indexOf(this.endDate) + 1;
     let dateRange = Array.from(this.days).slice(start, end);
-    let engagementIndex = this.currentEngagements.findIndex(_ => _.name = this.quickEngagement)
+    let engagementIndex = this.currentEngagements.findIndex(_ => _.name === this.quickEngagement);
     let person = this.currentPersonnel[this.currentPersonnel.findIndex(_ => _.name === this.quickPersonnel)];
     let engagement = this.currentEngagements[engagementIndex];
     let exists = person.engagements[engagement.name];
 
     dateRange.forEach(day => {
       if (!person[day]) {
-        if (!person.engagements[engagement.name]) {
-          person.engagements[engagement.name] = { hidden: false, days: {}};
-          person.engagements[engagement.name].days[day] = parseInt(this.quickHours);
-        } else {
-          person.engagements[engagement.name].days[day] = parseInt(this.quickHours);
+        if (!this.weekendsArray.includes(day)) {
+          if (!person.engagements[engagement.name]) {
+            person.engagements[engagement.name] = { hidden: false, days: {}};
+            person.engagements[engagement.name].days[day] = parseInt(this.quickHours);
+          } else {
+            person.engagements[engagement.name].days[day] = parseInt(this.quickHours);
+          }
         }
       }
     });

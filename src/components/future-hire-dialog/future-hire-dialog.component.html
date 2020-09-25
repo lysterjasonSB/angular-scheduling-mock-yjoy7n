@@ -41,6 +41,6 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <button mat-raised-button [mat-dialog-close]="newHire">Add Personnel</button>
+  <button mat-raised-button [mat-dialog-close]="newHire" [disabled]="!newHire.name || !newHire.team || !newHire.office || !newHire.classification">Add Personnel</button>
   <button mat-raised-button mat-dialog-close>Cancel</button>
 </div>

@@ -118,7 +118,7 @@
           <h4 class="field-labels">Start Date:</h4>
           <mat-form-field appearance="fill" class="selections">
             <mat-label>Select Start</mat-label>
-            <mat-select [(ngModel)]="startDate">
+            <mat-select [(ngModel)]="startDate" (selectionChange)="parseEndDate($event)">
               <mat-option *ngFor="let day of days" [value]="day">
                 {{ day }}
               </mat-option>
@@ -143,7 +143,7 @@
           <input matInput placeholder="Ex. 8" [(ngModel)]="quickHours">
         </mat-form-field>
       </div>
-      <button type="submit" mat-raised-button class="quickEntry" (click)="quickEntry()">Save Quick Entry</button>
+      <button type="submit" mat-raised-button class="quickEntry" (click)="quickEntry()" [disabled]="!quickEngagement || !quickPersonnel || !startDate || !endDate || !quickHours">Save Quick Entry</button>
     </div>
   </mat-sidenav>
 

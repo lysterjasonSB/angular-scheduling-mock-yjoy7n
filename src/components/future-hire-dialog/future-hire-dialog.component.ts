@@ -23,7 +23,7 @@ export class FutureHireDialogComponent implements OnInit {
   ];
 
   public newHire = {
-    id: "Pending ID",
+    id: 'Pending ID',
     selected: false,
     engagements: {},
   };

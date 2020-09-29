@@ -23,7 +23,7 @@ export class FutureHireDialogComponent implements OnInit {
   ];
 
   public newHire = {
-    id: Math.floor(100000 + Math.random() * 900000),
+    id: "Pending ID",
     selected: false,
     engagements: {},
   };
